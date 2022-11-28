@@ -1,8 +1,8 @@
-def solution(S):
+def solution(s):
     numDeletions = 0
     numB = 0
-    for ch in S:
-        numB += int(ch == "B")
-        if ch == "A":
+    for c in s:
+        numB += int(c == "B")
+        if c == "A":
             numDeletions = min(numDeletions + 1, numB)
     return numDeletions
