@@ -1,31 +1,31 @@
 def isMatch(s: str, p: str) -> bool:
     si, pi = 0, 0 
     while si < len(s) and pi < len(p):
-        star = pi + 1 < len(p) and p[pi+1] == "*"
+        nextIsStar = pi + 1 < len(p) and p[pi+1] == "*"
         # .*
-        if star and p[si] == ".":
-            for k in range(pi, len(s) + 1):
-                if isMatch(s[k:], p[si+2:]):
+        if nextIsStar and p[pi] == ".":
+            for j in range(si, len(s) + 1):
+                if isMatch(s[j:], p[pi+2:]):
                     return True
             return False
         # .
-        elif p[si] == ".":
+        elif p[pi] == ".":
             k += 1
         # (a-z)*
-        elif star:
-            for k in range(len(s) + 1):
-                if isMatch(s[pi:], p[si] * k + p[si+2:]):
+        elif nextIsStar:
+            for j in range(len(s) + 1):
+                if isMatch(s[si:], p[pi] * j + p[si+2:]):
                     return True
             return False
         # a-z
         else:
-            if p[si] == s[pi]:
-                pi += 1
+            if p[pi] == s[si]:
+                si += 1
             else:
                 return False
-        si += 1
-    while si + 1 < len(p) and p[si+1] == "*":
-        si += 2
+        pi += 1
+    while pi + 1 < len(p) and p[pi+1] == "*":
+        pi += 2
     return si == len(s) and pi == len(p) 
 
 def test(s, p):
