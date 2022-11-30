@@ -1,35 +1,32 @@
+def handleStar(s: str, si: int, p: str, pi: int) -> bool:
+    c = p[pi] # extract the character
+    p = p[pi+2:] # consume star expression
+    if c == ".":
+       for j in range(si, len(s) + 1):
+            if isMatch(s[j:], p):
+                return True 
+    else: # c == a-z
+        for j in range(len(s) + 1):
+            if isMatch(s[si:], c * j + p):
+                return True
+    return False
+
+
 def isMatch(s: str, p: str) -> bool:
     si, pi = 0, 0 
     while si < len(s) and pi < len(p):
-        nextIsStar = pi + 1 < len(p) and p[pi+1] == "*"
-        # .*
-        if nextIsStar and p[pi] == ".":
-            for j in range(si, len(s) + 1):
-                if isMatch(s[j:], p[pi+2:]):
-                    return True
+        if pi + 1 < len(p) and p[pi + 1] == "*":
+            return handleStar(s, si, p, pi)
+        elif p[pi] != "." and p[pi] != s[si]:
             return False
-        # .
-        elif p[pi] == ".":
-            k += 1
-        # (a-z)*
-        elif nextIsStar:
-            for j in range(len(s) + 1):
-                if isMatch(s[si:], p[pi] * j + p[si+2:]):
-                    return True
-            return False
-        # a-z
-        else:
-            if p[pi] == s[si]:
-                si += 1
-            else:
-                return False
-        pi += 1
-    while pi + 1 < len(p) and p[pi+1] == "*":
+        si += 1; pi += 1
+    while pi + 1 < len(p) and p[pi + 1] == "*":
         pi += 2
     return si == len(s) and pi == len(p) 
 
 def test(s, p):
-    print(f"isMatch({s}, {p}) = {isMatch(s, p)}")
+    functionStr = f"isMatch({s}, {p})"
+    print(f"{functionStr : <25} = {isMatch(s, p)}")
 
 print("*~*~*~*~*~*~*~\nTrue\n*~*~*~*~*~*~*~")
 print("Alpha:")
