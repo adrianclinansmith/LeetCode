@@ -1,13 +1,13 @@
 def handleStar(s: str, si: int, p: str, pi: int) -> bool:
     c = p[pi] # extract the character
-    p = p[pi+2:] # consume star expression
+    p = p[pi + 2 : ] # consume star expression
     if c == ".":
        for j in range(si, len(s) + 1):
-            if isMatch(s[j:], p):
+            if isMatch(s[j : ], p):
                 return True 
     else: # c == a-z
         for j in range(len(s) + 1):
-            if isMatch(s[si:], c * j + p):
+            if isMatch(s[si : ], c * j + p):
                 return True
     return False
 
@@ -37,6 +37,10 @@ test("a", "a*")
 test("aaa", "a*")
 test("bc", "a*bc")
 test("abc", "a*bc")
+print("dot:")
+test("a", ".")
+test("abc", "...")
+test("abc", "a.c")
 
 print("*~*~*~*~*~*~*~\nFalse\n*~*~*~*~*~*~*~")
 print("Alpha:")
