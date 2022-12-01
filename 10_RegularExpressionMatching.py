@@ -14,6 +14,25 @@ Constraints:
 - It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
 """
 
+def removeRedundancies(p: str) -> str:
+    i = p.find(".*")
+    while i > -1:
+        j = i - 1
+        while j > 0 and p[j] == "*":
+            p = p[0 : j - 1] + p[j + 1 : ]
+            i -= 2; j -= 2
+        j = i + 3
+        while j < len(p) and p[j] == "*":
+            p = p[0 : j - 1] + p[j + 1 : ]
+        i = p.find(".*", i + 1)
+    i = p.find("*")
+    while i > -1:
+        if p[i - 1] == p[i + 1] and p[i + 2] == "*":
+            p = p[0 : i - 1] + p[i + 1 : ] 
+    return p
+
+
+
 def handleStar(s: str, si: int, p: str, pi: int) -> bool:
     c = p[pi] # extract the character
     p = p[pi + 2 : ] # consume star expression
@@ -29,6 +48,7 @@ def handleStar(s: str, si: int, p: str, pi: int) -> bool:
 
 
 def isMatch(s: str, p: str) -> bool:
+    p = removeRedundancies(p)
     si, pi = 0, 0 
     while si < len(s) and pi < len(p):
         if pi + 1 < len(p) and p[pi + 1] == "*":
@@ -43,6 +63,12 @@ def isMatch(s: str, p: str) -> bool:
 def test(s, p):
     functionStr = f"isMatch({s}, {p})"
     print(f"{functionStr : <25} = {isMatch(s, p)}")
+
+print(removeRedundancies("..*a*a*b*c*.*a*bb*."))
+print(removeRedundancies("a*b*c*aa*b*.*"))
+print(removeRedundancies(".*a*b*c*aa*b*"))
+test("bcbacacbacbbbbcac", "..*a*a*b*c*.*a*bb*.")
+exit()
 
 print("*~*~*~*~*~*~*~\nTrue\n*~*~*~*~*~*~*~")
 print("Alpha:")
