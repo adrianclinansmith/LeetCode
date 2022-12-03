@@ -43,10 +43,10 @@ def removeRedundancies(p: str) -> str:
         while j < len(p) and p[j] == "*":
             p = p[0 : j - 1] + p[j + 1 : ]
         i = p.find(".*", i + 1)
-    i = p.find("*")
-    while i > -1:
-        if p[i - 1] == p[i + 1] and p[i + 2] == "*":
-            p = p[0 : i - 1] + p[i + 1 : ] 
+    # i = p.find("*")
+    # while i > -1:
+    #     if p[i - 1] == p[i + 1] and p[i + 2] == "*":
+    #         p = p[0 : i - 1] + p[i + 1 : ] 
     return p
 
 
