@@ -14,40 +14,40 @@ Constraints:
 - It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
 """
 
-def removeRedundancies(p: str) -> str:
-    newP = []
-    lastStarChar = None
-    i = 0
-    while i < len(p):
-        c = p[i]
-        if i + 1 < len(p) and p[i + 1] == "*":
-            i += 1
-            if c in (lastStarChar, "."):
-                i += 1
-            if lastStarChar != ".":
-                lastStarChar = c
-            continue
-        lastStarChar = None
-        newP.append(c)
-        i += 1
-    return "".join(newP)
-
 # def removeRedundancies(p: str) -> str:
-#     i = p.find(".*")
-#     while i > -1:
-#         j = i - 1
-#         while j > 0 and p[j] == "*":
-#             p = p[0 : j - 1] + p[j + 1 : ]
-#             i -= 2; j -= 2
-#         j = i + 3
-#         while j < len(p) and p[j] == "*":
-#             p = p[0 : j - 1] + p[j + 1 : ]
-#         i = p.find(".*", i + 1)
-#     i = p.find("*")
-#     while i > -1:
-#         if p[i - 1] == p[i + 1] and p[i + 2] == "*":
-#             p = p[0 : i - 1] + p[i + 1 : ] 
-#     return p
+#     newP = []
+#     lastStarChar = None
+#     i = 0
+#     while i < len(p):
+#         c = p[i]
+#         if i + 1 < len(p) and p[i + 1] == "*":
+#             i += 1
+#             if c in (lastStarChar, "."):
+#                 i += 1
+#             if lastStarChar != ".":
+#                 lastStarChar = c
+#             continue
+#         lastStarChar = None
+#         newP.append(c)
+#         i += 1
+#     return "".join(newP)
+
+def removeRedundancies(p: str) -> str:
+    i = p.find(".*")
+    while i > -1:
+        j = i - 1
+        while j > 0 and p[j] == "*":
+            p = p[0 : j - 1] + p[j + 1 : ]
+            i -= 2; j -= 2
+        j = i + 3
+        while j < len(p) and p[j] == "*":
+            p = p[0 : j - 1] + p[j + 1 : ]
+        i = p.find(".*", i + 1)
+    i = p.find("*")
+    while i > -1:
+        if p[i - 1] == p[i + 1] and p[i + 2] == "*":
+            p = p[0 : i - 1] + p[i + 1 : ] 
+    return p
 
 
 
