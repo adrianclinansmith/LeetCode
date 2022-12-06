@@ -22,8 +22,9 @@ def maxArea(height: list[int]) -> int:
     j = len(height) - 1
     while i < j:
         currentHeight = min(height[i], height[j])
-        maxHeightFound = max(maxHeightFound, currentHeight)
-        maxAreaFound = max(maxAreaFound, currentHeight * (j - i))
+        if currentHeight > maxHeightFound:
+            maxHeightFound = currentHeight
+            maxAreaFound = max(maxAreaFound, currentHeight * (j - i))
         if height[i] <= maxHeightFound:
             i += 1
         if height[j] <= maxHeightFound:
