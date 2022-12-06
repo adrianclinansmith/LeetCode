@@ -14,3 +14,18 @@ Constraints:
 - 2 <= n <= 105
 - 0 <= height[i] <= 104
 """
+
+def maxArea(height: list[int]) -> int:
+    maxAreaFound = 0
+    maxHeightFound = 0
+    i = 0
+    j = len(height) - 1
+    while i < j:
+        currentHeight = min(height[i], height[j])
+        maxHeightFound = max(maxHeightFound, currentHeight)
+        maxAreaFound = max(maxAreaFound, currentHeight * (j - i))
+        if height[i] <= maxHeightFound:
+            i += 1
+        if height[j] <= maxHeightFound:
+            j -= 1
+    return maxAreaFound
