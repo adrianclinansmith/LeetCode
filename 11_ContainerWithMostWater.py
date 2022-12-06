@@ -8,4 +8,9 @@ Find two lines that together with the x-axis form a container, such that the con
 Return the maximum amount of water a container can store.
 
 Notice that you may not slant the container.
+
+Constraints:
+- n == height.length
+- 2 <= n <= 105
+- 0 <= height[i] <= 104
 """
