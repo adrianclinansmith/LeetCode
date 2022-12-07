@@ -37,41 +37,36 @@ def removeRedundancies(p: str) -> str:
         i = p.find("*", i+1)
     return p 
 
-def handleStar(s: str, si: int, p: str, pi: int) -> bool:
-    c = p[pi] # extract the character
-    p = p[pi + 2 : ] # consume star expression
+def handleStar(s: str, p: str, i: int) -> bool:
+    c = p[i] # extract the character
+    p = p[i + 2 : ] # consume the star expression and everything before it
     if c == ".":
-       for j in range(si, len(s) + 1):
+       for j in range(i, len(s) + 1):
             if isMatch(s[j : ], p):
                 return True 
     else: # c == a-z
         for j in range(len(s) + 1):
-            if isMatch(s[si : ], c * j + p):
+            if isMatch(s[i : ], c * j + p):
                 return True
     return False
 
 def isMatch(s: str, p: str) -> bool:
     p = removeRedundancies(p)
-    si, pi = 0, 0 
-    while si < len(s) and pi < len(p):
-        if pi + 1 < len(p) and p[pi + 1] == "*":
-            return handleStar(s, si, p, pi)
-        elif p[pi] != "." and p[pi] != s[si]:
+    i = 0 
+    while i < len(s) and i < len(p):
+        if i + 1 < len(p) and p[i + 1] == "*":
+            return handleStar(s, p, i)
+        elif p[i] != "." and p[i] != s[i]:
             return False
-        si += 1; pi += 1
-    while pi + 1 < len(p) and p[pi + 1] == "*":
-        pi += 2
-    return si == len(s) and pi == len(p) 
+        i += 1
+    lenP = len(p)
+    while i < lenP and p[lenP - 1] == "*":
+        lenP -= 2
+    return i == len(s) and i == lenP
 
 def test(s, p):
     functionStr = f"isMatch({s}, {p})"
     print(f"{functionStr : <25} = {isMatch(s, p)}")
-
-test("..*a*a*b*c*.*a*bb*.")
-test("a*b*c*aa*b*.*")
-test(".*a*b*c*aa*b*")
-# test("bcbacacbacbbbbcac", "..*a*a*b*c*.*a*bb*.")
-exit()
 
 print("*~*~*~*~*~*~*~\nTrue\n*~*~*~*~*~*~*~")
 print("Alpha:")
