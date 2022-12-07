@@ -2,7 +2,7 @@
 10. Regular Expression Matching
 
 Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
-- '.' Matches any single character.​​​​
+- '.' Matches any single character
 - '*' Matches zero or more of the preceding element.
 The matching should cover the entire input string (not partial).
 
@@ -19,13 +19,23 @@ def removeRedundancies(p: str) -> str:
     while i > -1:
         j = i - 1
         while j > 0 and p[j] == "*":
-            p = p[0 : j - 1] + p[j + 1 : ]
-            i -= 2; j -= 2
-        j = i + 3
-        while j < len(p) and p[j] == "*":
-            p = p[0 : j - 1] + p[j + 1 : ]
-        i = p.find(".*", i + 1)
-    return p
+            j -= 2
+        k = i + 3
+        while k < len(p) and p[k] == "*":
+            k += 2
+        p = f"{p[0 : j+1]}.*{p[k-1 : len(p)]}"
+        i = p.find(".*", j + 2)
+    i = p.find("*")
+    while i > -1:
+        if p[i-1] == ".":
+            i = p.find("*", i+1)
+            continue
+        j = i + 2
+        while j < len(p) and p[j] == "*" and p[j-1] == p[i-1]:
+            j += 2
+        p = f"{p[0 : i+1]}{p[j-1 : len(p)]}"
+        i = p.find("*", i+1)
+    return p 
 
 def handleStar(s: str, si: int, p: str, pi: int) -> bool:
     c = p[pi] # extract the character
@@ -57,9 +67,9 @@ def test(s, p):
     functionStr = f"isMatch({s}, {p})"
     print(f"{functionStr : <25} = {isMatch(s, p)}")
 
-print(removeRedundancies("..*a*a*b*c*.*a*bb*."))
-print(removeRedundancies("a*b*c*aa*b*.*"))
-print(removeRedundancies(".*a*b*c*aa*b*"))
+test("..*a*a*b*c*.*a*bb*.")
+test("a*b*c*aa*b*.*")
+test(".*a*b*c*aa*b*")
 # test("bcbacacbacbbbbcac", "..*a*a*b*c*.*a*bb*.")
 exit()
 
