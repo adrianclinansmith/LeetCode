@@ -23,3 +23,6 @@ Given an integer, convert it to a roman numeral.
 Constraints:
 1 <= num <= 3999
 """
+
+def intToRoman(num: int) -> str:
+    pass
