@@ -25,4 +25,22 @@ Constraints:
 """
 
 def intToRoman(num: int) -> str:
-    pass
+    symbols = ["M", "CM", "D", "CD", "C", "XC", 
+        "L", "XL", "X", "IX", "V", "IV", "I"]
+    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+    romanNum = []
+    for i in range(len(symbols)):
+        romanNum.append(symbols[i] * (num // values[i]))
+        num %= values[i]
+    return "".join(romanNum)
+
+def test(num: int):
+    print(f"{num} -> {intToRoman(num)}")
+
+test(0)
+test(1000)
+test(3500)
+test(3504)
+test(3507)
+test(3508)
+test(3509)
