@@ -24,10 +24,11 @@ Constraints:
 1 <= num <= 3999
 """
 
+symbols = ["M", "CM", "D", "CD", "C", "XC", 
+    "L", "XL", "X", "IX", "V", "IV", "I"]
+values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+
 def intToRoman(num: int) -> str:
-    symbols = ["M", "CM", "D", "CD", "C", "XC", 
-        "L", "XL", "X", "IX", "V", "IV", "I"]
-    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
     romanNum = []
     for i in range(len(symbols)):
         romanNum.append(symbols[i] * (num // values[i]))
