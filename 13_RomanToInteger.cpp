@@ -30,11 +30,25 @@ Constraints:
 
 #include <iostream>
 
-const char* symbols[] = {"M", "CM", "D", "CD", "C", "XC", 
-    "L", "XL", "X", "IX", "V", "IV", "I"};
-const int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+using namespace std;
+
+string symbols[] = {"M", "CM", "D", "CD", "C", "XC", 
+        "L", "XL", "X", "IX", "V", "IV", "I"};
+int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        for (int i = 0; i < 13; i++) {
+            cout << symbols[i] << "\n";
+        }
+        return 0;
+    }
+};
 
 int main() {
-    std::cout << "Hello\n";
+    cout << "Hello\n";
+    Solution solution;
+    solution.romanToInt("");
     return 0;
 }
