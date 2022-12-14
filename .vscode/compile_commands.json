@@ -1,0 +1,7 @@
+[
+    {
+        "command": "g++ *.cpp",
+        "directory": "/Users/adrianclinansmith/Documents/Programs/Python/LeetCode",
+        "file": "*.cpp"
+    }
+]
