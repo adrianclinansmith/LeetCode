@@ -42,14 +42,14 @@ class Solution {
 public:
     int romanToInt(string const& s) const {
         for (int i = 0; i < symbols.size(); i++) {
-            cout << symbols[i] << "\n";
+            cout << symbols[i] << ", " << values[i] << "\n";
         }
         return 0;
     }
 };
 
 int main() {
-    cout << "Hello\n";
+    cout << "Start\n";
     Solution solution;
     solution.romanToInt("");
     return 0;
