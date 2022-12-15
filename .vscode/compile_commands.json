@@ -1,7 +1,7 @@
 [
     {
-        "command": "g++ *.cpp",
+        "command": "g++ 13_RomanToInteger.cpp",
         "directory": "/Users/adrianclinansmith/Documents/Programs/Python/LeetCode",
-        "file": "*.cpp"
+        "file": "13_RomanToInteger.cpp"
     }
 ]
