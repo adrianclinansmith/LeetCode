@@ -41,16 +41,31 @@ const array<int, 13> values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4
 class Solution {
 public:
     int romanToInt(string const& s) const {
-        for (int i = 0; i < symbols.size(); i++) {
-            cout << symbols[i] << " -> " << values[i] << "\n";
+        int result = 0;
+        int i = 0;
+        for (int k = 0; k < symbols.size(); k++) {
+            if (i == s.length()) {
+                break;
+            }
+            if (symbols[k].length() == 1) {
+                while (i < s.length() && s[i] == symbols[k][0]) {
+                    i += 1;
+                    result += values[k];
+                }
+            } 
+            else if (symbols[k].length() == 2) {
+                while (i + 1 < s.length() && s[i] == symbols[k][0] && s[i+1] == symbols[k][1]) {
+                    i += 2;
+                    result += values[k];
+                }
+            }
         }
-        return 0;
+        return result;
     }
 };
 
 int main() {
-    cout << "Start\n";
     Solution solution;
-    solution.romanToInt("");
+    cout << "Solution: " << solution.romanToInt("VIII") << "\n";
     return 0;
 }
