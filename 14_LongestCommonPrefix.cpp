@@ -30,8 +30,12 @@ public:
     string longestCommonPrefix(vector<string> const& strs) const {
         string prefix = strs[0];
         for (auto iter = strs.cbegin() + 1; iter != strs.cend(); ++iter) {
+            if (prefix.length() == 0) {
+                break;
+            }
             int i = 0;
-            while (i < prefix.length() && i < (*iter).length() && prefix[i] == (*iter)[i]) {
+            while (i < prefix.length() && i < (*iter).length() && 
+            prefix[i] == (*iter)[i]) {
                 i++;
             }
             prefix = prefix.substr(0, i);
