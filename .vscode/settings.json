@@ -44,6 +44,8 @@
         "system_error": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "__hash_table": "cpp",
+        "vector": "cpp"
     }
 }

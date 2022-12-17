@@ -27,12 +27,22 @@ using namespace std;
 
 class Solution {
 public:
-    string longestCommonPrefix(vector<string>& strs) {
-        
+    string longestCommonPrefix(vector<string> const& strs) const {
+        string prefix = strs[0];
+        for (auto iter = strs.cbegin() + 1; iter != strs.cend(); ++iter) {
+            int i = 0;
+            while (i < prefix.length() && i < (*iter).length() && prefix[i] == (*iter)[i]) {
+                i++;
+            }
+            prefix = prefix.substr(0, i);
+        }
+        return prefix;
     }
 };
 
 int main() {
     Solution solution;
+    cout << solution.longestCommonPrefix({"flower", "flow", "flight"}) << "\n";
+    cout << solution.longestCommonPrefix({"dog", "racecar", "car"}) << "\n";
     return 0;
 }
