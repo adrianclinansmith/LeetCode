@@ -28,16 +28,11 @@ Constraints:
 - It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 */
 
-#include <array>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 
 using namespace std;
-
-// const array<string, 13> symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-
-// const array<int, 13> values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
 unordered_map<string, int> const symbolMap = {
     {"M", 1000}, {"CM", 900}, {"D", 500}, {"CD", 400}, {"C", 100}, {"XC", 90}, {"L", 50}, {"XL", 40}, {"X", 10}, {"IX", 9}, {"V", 5}, {"IV", 4}, {"I", 1}
