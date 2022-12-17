@@ -43,24 +43,28 @@ unordered_map<string, int> const symbolMap = {
     {"M", 1000}, {"CM", 900}, {"D", 500}, {"CD", 400}, {"C", 100}, {"XC", 90}, {"L", 50}, {"XL", 40}, {"X", 10}, {"IX", 9}, {"V", 5}, {"IV", 4}, {"I", 1}
 };
 
-// class Solution {
-// public:
-//     int romanToInt(string const& s) const {
-//         int result = 0;
-//         for (int i = 0; i < s.length(); i++) {
-//             if (i + 1 < s.length() && symbolMap.contains(s[i] + s[i+1])) {
-//                 cout << symbolMap[s[i] + s[i+1]];
-//             } 
-//         }
-//         return result;
-//     }
-// };
+class Solution {
+public:
+    int romanToInt(string const& s) const {
+        int result = 0;
+        int i = 0;
+        while (i < s.length()) {
+            string symbol = s.substr(i, 2);
+            if (symbolMap.find(symbol) == symbolMap.end()) {
+                symbol = s.substr(i, 1);
+                i--;
+            }
+            result += symbolMap.at(symbol);
+            i += 2;
+        }
+        return result;
+    }
+};
 
 int main() {
-    // Solution solution;
-    // cout << "Solution: " << solution.romanToInt("VIII") << "\n";
-    if (symbolMap.contains("IV")) {
-        cout << " found IV";
-    }
+    Solution solution;
+    cout << "Solution: " << solution.romanToInt("IVIII") << "\n";
+    cout << "Solution: " << solution.romanToInt("I") << "\n";
+    cout << "Solution: " << solution.romanToInt("CMDIXI") << "\n";
     return 0;
 }
