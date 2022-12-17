@@ -35,42 +35,32 @@ Constraints:
 
 using namespace std;
 
-const array<string, 13> symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+// const array<string, 13> symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-const array<int, 13> values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+// const array<int, 13> values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
-unordered_map<string, int> const symbolsMap = {
+unordered_map<string, int> const symbolMap = {
     {"M", 1000}, {"CM", 900}, {"D", 500}, {"CD", 400}, {"C", 100}, {"XC", 90}, {"L", 50}, {"XL", 40}, {"X", 10}, {"IX", 9}, {"V", 5}, {"IV", 4}, {"I", 1}
 };
 
-class Solution {
-public:
-    int romanToInt(string const& s) const {
-        int result = 0;
-        int i = 0;
-        for (int k = 0; k < symbols.size(); k++) {
-            if (i == s.length()) {
-                break;
-            }
-            if (symbols[k].length() == 1) {
-                while (i < s.length() && s[i] == symbols[k][0]) {
-                    i += 1;
-                    result += values[k];
-                }
-            } 
-            else {
-                while (i + 1 < s.length() && s[i] == symbols[k][0] && s[i+1] == symbols[k][1]) {
-                    i += 2;
-                    result += values[k];
-                }
-            }
-        }
-        return result;
-    }
-};
+// class Solution {
+// public:
+//     int romanToInt(string const& s) const {
+//         int result = 0;
+//         for (int i = 0; i < s.length(); i++) {
+//             if (i + 1 < s.length() && symbolMap.contains(s[i] + s[i+1])) {
+//                 cout << symbolMap[s[i] + s[i+1]];
+//             } 
+//         }
+//         return result;
+//     }
+// };
 
 int main() {
-    Solution solution;
-    cout << "Solution: " << solution.romanToInt("VIII") << "\n";
+    // Solution solution;
+    // cout << "Solution: " << solution.romanToInt("VIII") << "\n";
+    if (symbolMap.contains("IV")) {
+        cout << " found IV";
+    }
     return 0;
 }

@@ -2,7 +2,7 @@
 compileRunClean: compile run clean
 
 compile:
-	g++ -o $(file) $(file).cpp
+	g++ -std=c++17 -o $(file) $(file).cpp
 
 run:
 	./$(file)
