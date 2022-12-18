@@ -34,23 +34,31 @@ Constraints:
 
 using namespace std;
 
-unordered_map<string, int> const symbolMap = {
-    {"M", 1000}, {"CM", 900}, {"D", 500}, {"CD", 400}, {"C", 100}, {"XC", 90}, {"L", 50}, {"XL", 40}, {"X", 10}, {"IX", 9}, {"V", 5}, {"IV", 4}, {"I", 1}
-};
+// unordered_map<string, int> const symbolMap = {
+//     {"M", 1000}, {"CM", 900}, {"D", 500}, {"CD", 400}, {"C", 100}, {"XC", 90}, {"L", 50}, {"XL", 40}, {"X", 10}, {"IX", 9}, {"V", 5}, {"IV", 4}, {"I", 1}
+// };
 
 class Solution {
 public:
     int romanToInt(string const& s) const {
         int result = 0;
-        int i = 0;
-        while (i < s.length()) {
-            string symbol = s.substr(i, 2);
-            if (symbolMap.find(symbol) == symbolMap.end()) {
-                symbol = s.substr(i, 1);
-                i--;
+        int lastValue = 0;
+        for (char const& c : s) {
+            int currentValue;
+            switch (c) {
+                case 'M': currentValue = 1000; break;
+                case 'D': currentValue = 500; break;
+                case 'C': currentValue = 100; break;
+                case 'L': currentValue = 50; break;
+                case 'X': currentValue = 10; break;
+                case 'V': currentValue = 5; break;
+                default:  currentValue = 1;
             }
-            result += symbolMap.at(symbol);
-            i += 2;
+            result += currentValue;
+            if (lastValue < currentValue) {
+                result -= 2 * lastValue;
+            }
+            lastValue = currentValue;
         }
         return result;
     }
