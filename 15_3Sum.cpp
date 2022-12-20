@@ -18,3 +18,10 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
     }
 };
+
+int main() {
+    Solution solution;
+    vector nums = { 1, 2, 3, 4 };
+    // cout << solution.threeSum(nums) << "\n";
+    return 0;
+}
