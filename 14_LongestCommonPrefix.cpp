@@ -27,20 +27,31 @@ using namespace std;
 
 class Solution {
 public:
+    // string longestCommonPrefix(vector<string> const & strs) const {
+    //     size_t prefixLength = strs[0].length();
+    //     for (size_t i = 1; i < strs.size(); i++) {
+    //         if (prefixLength == 0) {
+    //             break;
+    //         }
+    //         int j = 0;
+    //         while (j < prefixLength && j < strs[i].length() && 
+    //         strs[0][j] == strs[i][j]) {
+    //             j++;
+    //         }
+    //         prefixLength = j;
+    //     }
+    //     return strs[0].substr(0, prefixLength);
+    // }
     string longestCommonPrefix(vector<string> const & strs) const {
-        size_t prefixLength = strs[0].length();
-        for (size_t i = 1; i < strs.size(); i++) {
-            if (prefixLength == 0) {
-                break;
+        size_t len = 0;
+        while (true) {
+            for (auto& str : strs) {
+                if (len >= str.length() || strs[0][len] != str[len]) {
+                    return strs[0].substr(0, len);
+                }
             }
-            int j = 0;
-            while (j < prefixLength && j < strs[i].length() && 
-            strs[0][j] == strs[i][j]) {
-                j++;
-            }
-            prefixLength = j;
+            len++;
         }
-        return strs[0].substr(0, prefixLength);
     }
 };
 
