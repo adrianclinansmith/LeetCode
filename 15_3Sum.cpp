@@ -16,6 +16,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
+        return { 1, 2, 3, 4 };
     }
 };
 
