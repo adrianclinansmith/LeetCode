@@ -24,6 +24,11 @@ public:
         for (int num : nums) {
             cout << num << ", ";
         }
+        cout << "\n\nResult:\n";
+        vector<vector<int>> result = threeSum(nums);
+        for (vector<int>& tri : result) {
+            cout << tri[0] << ", " << tri[1] << ", " << tri[2] << "\n";
+        }
         cout << "\n";
     }
 };
