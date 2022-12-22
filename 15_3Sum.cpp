@@ -20,7 +20,7 @@ public:
         return result;
     }
     void test(vector<int>& nums) {
-        cout << "Input:\n";
+        cout << "*~*~*~*~*~*~*~*\nInput:\n*~*~*~*~*~*~*~*\n";
         for (int num : nums) {
             cout << num << ", ";
         }
