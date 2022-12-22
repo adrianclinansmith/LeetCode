@@ -37,5 +37,7 @@ int main() {
     Solution solution;
     vector nums = { 1, 2, -3, 4 };
     solution.test(nums);
+    nums = { -1, 2, -3, 4 };
+    solution.test(nums);
     return 0;
 }
