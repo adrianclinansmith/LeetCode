@@ -19,11 +19,18 @@ public:
         vector<vector<int>> result = {};
         return result;
     }
+    void test(vector<int>& nums) {
+        cout << "Input:\n";
+        for (int num : nums) {
+            cout << num << ", ";
+        }
+        cout << "\n";
+    }
 };
 
 int main() {
     Solution solution;
-    vector nums = { 1, 2, 3, 4 };
-    // cout << solution.threeSum(nums) << "\n";
+    vector nums = { 1, 2, -3, 4 };
+    solution.test(nums);
     return 0;
 }
