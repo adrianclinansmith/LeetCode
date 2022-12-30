@@ -23,21 +23,21 @@ public:
             negativeEnd++;
         }
         size_t positiveStart = negativeEnd, positiveEnd = nums.size();
+        auto iterStart = nums.begin() + positiveStart;
+        auto iterEnd = nums.begin() + positiveEnd;
         for (size_t i = negativeStart; i < negativeEnd; i++) {
             for (size_t k = i + 1; k < negativeEnd; k++) {
                 int toFind = -(nums[i] + nums[k]);
-                auto iterStart = nums.begin() + positiveStart;
-                auto iterEnd = nums.begin() + positiveEnd;
                 if (binary_search(iterStart, iterEnd, toFind)) {
                     result.push_back({nums[i], nums[k], toFind});
                 }
             }    
         }
+        iterStart = nums.begin() + negativeStart;
+        iterEnd = nums.begin() + negativeEnd;
         for (size_t i = positiveStart; i < positiveEnd; i++) {
             for (size_t k = i + 1; k < positiveEnd; k++) {
                 int toFind = -(nums[i] + nums[k]);
-                auto iterStart = nums.begin() + negativeStart;
-                auto iterEnd = nums.begin() + negativeEnd;
                 if (binary_search(iterStart, iterEnd, toFind)) {
                     result.push_back({toFind, nums[i], nums[k]});
                 }
