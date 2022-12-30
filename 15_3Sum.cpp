@@ -25,27 +25,12 @@ public:
         size_t positiveStart = negativeEnd, positiveEnd = nums.size();
         auto iterStart = nums.begin() + positiveStart;
         auto iterEnd = nums.begin() + positiveEnd;
-        for (size_t i = negativeStart; i < negativeEnd; i++) {
-            for (size_t k = i + 1; k < negativeEnd; k++) {
-                int toFind = -(nums[i] + nums[k]);
-                if (binary_search(iterStart, iterEnd, toFind)) {
-                    result.push_back({nums[i], nums[k], toFind});
-                }
-            }    
-        }
+        inner(nums, negativeStart, negativeEnd, iterStart, iterEnd, result);
         iterStart = nums.begin() + negativeStart;
         iterEnd = nums.begin() + negativeEnd;
-        for (size_t i = positiveStart; i < positiveEnd; i++) {
-            for (size_t k = i + 1; k < positiveEnd; k++) {
-                int toFind = -(nums[i] + nums[k]);
-                if (binary_search(iterStart, iterEnd, toFind)) {
-                    result.push_back({toFind, nums[i], nums[k]});
-                }
-            }    
-        }
+        inner(nums, positiveStart, positiveEnd, iterStart, iterEnd, result);
         return result;
     }
-
     void test(vector<int>& nums) {
         cout << "*~*~*~*~*~*~*~*\nInput:\n*~*~*~*~*~*~*~*\n";
         for (int num : nums) {
@@ -62,6 +47,23 @@ public:
             cout << tri[0] << ", " << tri[1] << ", " << tri[2] << "\n";
         }
         cout << "\n";
+    } 
+private:
+    inline void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
+        for (size_t i = loopStart; i < loopEnd; i++) {
+            if (i > loopStart && nums[i] == nums[i-1]) {
+                continue;
+            }
+            for (size_t k = i + 1; k < loopEnd; k++) {
+                if (k > i + 1 && nums[k] == nums[k-1]) {
+                    continue;
+                }
+                int toFind = -(nums[i] + nums[k]);
+                if (binary_search(iterStart, iterEnd, toFind)) {
+                    result.push_back({nums[i], nums[k], toFind});
+                }
+            }    
+        }
     }
 };
 
