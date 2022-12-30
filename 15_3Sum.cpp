@@ -17,8 +17,35 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> result = {};
+        sort(nums.begin(), nums.end());
+        size_t negativeStart = 0, negativeEnd = 0;
+        while (negativeEnd < nums.size() && nums[negativeEnd] < 0) {
+            negativeEnd++;
+        }
+        size_t positiveStart = negativeEnd, positiveEnd = nums.size();
+        for (size_t i = negativeStart; i < negativeEnd; i++) {
+            for (size_t k = i + 1; k < negativeEnd; k++) {
+                int toFind = -(nums[i] + nums[k]);
+                auto iterStart = nums.begin() + positiveStart;
+                auto iterEnd = nums.begin() + positiveEnd;
+                if (binary_search(iterStart, iterEnd, toFind)) {
+                    result.push_back({nums[i], nums[k], toFind});
+                }
+            }    
+        }
+        for (size_t i = positiveStart; i < positiveEnd; i++) {
+            for (size_t k = i + 1; k < positiveEnd; k++) {
+                int toFind = -(nums[i] + nums[k]);
+                auto iterStart = nums.begin() + negativeStart;
+                auto iterEnd = nums.begin() + negativeEnd;
+                if (binary_search(iterStart, iterEnd, toFind)) {
+                    result.push_back({toFind, nums[i], nums[k]});
+                }
+            }    
+        }
         return result;
     }
+
     void test(vector<int>& nums) {
         cout << "*~*~*~*~*~*~*~*\nInput:\n*~*~*~*~*~*~*~*\n";
         for (int num : nums) {
@@ -42,7 +69,7 @@ int main() {
     Solution solution;
     vector nums = { 1, 2, -3, 4 };
     solution.test(nums);
-    nums = { -1, 2, -3, 4 };
+    nums = { -1, 2, -1, -3, 4 };
     solution.test(nums);
     return 0;
 }
