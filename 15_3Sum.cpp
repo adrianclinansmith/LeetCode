@@ -75,5 +75,7 @@ int main() {
     solution.test(nums);
     nums = { 1, 1, 1, 1 };
     solution.test(nums);
+    nums = { 0, 0, 0, 0 };
+    solution.test(nums);
     return 0;
 }
