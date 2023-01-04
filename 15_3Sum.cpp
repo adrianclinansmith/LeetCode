@@ -32,21 +32,15 @@ public:
         return result;
     }
     void test(vector<int>& nums) {
-        cout << "*~*~*~*~*~*~*~*\nInput:\n*~*~*~*~*~*~*~*\n";
+        cout << "Input: ";
         for (int num : nums) {
             cout << num << ", ";
         }
-        cout << "\n\nSorted:\n";
-        sort(nums.begin(), nums.end());
-        for (int num : nums) {
-            cout << num << ", ";
+        cout << " Result: ";
+        for (vector<int>& tri : threeSum(nums)) {
+            cout << tri[0] << ", " << tri[1] << ", " << tri[2] << " .. ";
         }
-        cout << "\n\nResult:\n";
-        vector<vector<int>> result = threeSum(nums);
-        for (vector<int>& tri : result) {
-            cout << tri[0] << ", " << tri[1] << ", " << tri[2] << "\n";
-        }
-        cout << "\n";
+        cout << "\n\n";
     } 
 private:
     void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
