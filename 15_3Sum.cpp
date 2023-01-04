@@ -49,7 +49,7 @@ public:
         cout << "\n";
     } 
 private:
-    inline void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
+    void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
         for (size_t i = loopStart; i < loopEnd; i++) {
             if (i > loopStart && nums[i] == nums[i-1]) {
                 continue;
@@ -72,6 +72,8 @@ int main() {
     vector nums = { 1, 2, -3, 4 };
     solution.test(nums);
     nums = { -1, 2, -1, -3, 4 };
+    solution.test(nums);
+    nums = { 1, 1, 1, 1 };
     solution.test(nums);
     return 0;
 }
