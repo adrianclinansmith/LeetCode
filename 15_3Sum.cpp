@@ -31,15 +31,17 @@ public:
         return result;
     }
     void test(vector<int>& nums) {
-        cout << "Input: ";
-        for (int num : nums) {
-            cout << num << ", ";
+        string input = "Input: [";
+        for (size_t i = 0; i < nums.size(); i++) {
+            input += nums[i] + (i < nums.size() ? ", " : "");
         }
-        cout << " Result: ";
+        input += "]" + string(20 - input.length(), ' ');
+        cout << input;
+        cout << "Result: ";
         for (vector<int>& tri : threeSum(nums)) {
             cout << tri[0] << ", " << tri[1] << ", " << tri[2] << " .. ";
         }
-        cout << "\n\n";
+        cout << "\n";
     } 
 private:
     void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
