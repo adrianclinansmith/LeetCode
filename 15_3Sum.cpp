@@ -34,14 +34,14 @@ public:
     void test(vector<int>& nums) {
         cout << "Input: [";
         for (size_t i = 0; i < nums.size(); i++) {
-            cout << nums[i] << (i < nums.size() ? ", " : "");
+            cout << nums[i] << (i < nums.size() - 1 ? ", " : "");
         }
         cout << "], Result: ";
         auto answer = threeSum(nums);
         for (size_t i = 0; i < answer.size(); i++) {
             cout << "[" << answer[i][0] << ", ";
             cout << answer[i][1] << ", ";
-            cout << answer[i][0] << "]" << (i < answer.size() ? ", " : "");
+            cout << answer[i][0] << "]" << (i < answer.size() - 1 ? ", " : "");
         }
         cout << "\n\n";
     } 
