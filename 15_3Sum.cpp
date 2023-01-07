@@ -10,6 +10,7 @@ Constraints:
 
 #include <iostream>
 #include <vector>
+#include <string> 
 
 using namespace std;
 
@@ -31,17 +32,18 @@ public:
         return result;
     }
     void test(vector<int>& nums) {
-        string input = "Input: [";
+        cout << "Input: [";
         for (size_t i = 0; i < nums.size(); i++) {
-            input += nums[i] + (i < nums.size() ? ", " : "");
+            cout << nums[i] << (i < nums.size() ? ", " : "");
         }
-        input += "]" + string(20 - input.length(), ' ');
-        cout << input;
-        cout << "Result: ";
-        for (vector<int>& tri : threeSum(nums)) {
-            cout << tri[0] << ", " << tri[1] << ", " << tri[2] << " .. ";
+        cout << "], Result: ";
+        auto answer = threeSum(nums);
+        for (size_t i = 0; i < answer.size(); i++) {
+            cout << "[" << answer[i][0] << ", ";
+            cout << answer[i][1] << ", ";
+            cout << answer[i][0] << "]" << (i < answer.size() ? ", " : "");
         }
-        cout << "\n";
+        cout << "\n\n";
     } 
 private:
     void inner(vector<int>& nums, size_t loopStart, size_t loopEnd, vector<int>::iterator iterStart, vector<int>::iterator iterEnd, vector<vector<int>>& result) {
