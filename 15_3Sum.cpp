@@ -22,13 +22,12 @@ public:
         while (negativeEnd < nums.size() && nums[negativeEnd] < 0) {
             negativeEnd++;
         }
-        size_t positiveStart = negativeEnd, positiveEnd = nums.size();
-        auto iterStart = nums.begin() + positiveStart;
-        auto iterEnd = nums.begin() + positiveEnd;
+        auto iterStart = nums.begin() + negativeEnd;
+        auto iterEnd = nums.begin() + nums.size();
         inner(nums, negativeStart, negativeEnd, iterStart, iterEnd, result);
         iterStart = nums.begin() + negativeStart;
         iterEnd = nums.begin() + negativeEnd;
-        inner(nums, positiveStart, positiveEnd, iterStart, iterEnd, result);
+        inner(nums, negativeEnd, nums.size(), iterStart, iterEnd, result);
         return result;
     }
     void test(vector<int>& nums) {
