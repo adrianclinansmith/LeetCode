@@ -47,5 +47,8 @@
         "unordered_map": "cpp",
         "__hash_table": "cpp",
         "vector": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "nums"
+    ]
 }

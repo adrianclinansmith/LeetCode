@@ -22,7 +22,6 @@ class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> results = new ArrayList<>();
 		Arrays.sort(nums);
-		// int locOfFirst0 = binarySearch(nums, 0);
 		for (int i = 0; i < nums.length; i++) {
 			if (i > 0 && nums[i - 1] == nums[i]) {
 				continue;
@@ -44,7 +43,6 @@ class Solution {
 				}
 			}
 		}
-		// System.out.println("Loc of first 0: " + locOfFirst0);
 		return results;
     }
 
