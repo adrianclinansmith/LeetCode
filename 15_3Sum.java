@@ -24,6 +24,9 @@ class Solution {
 		Arrays.sort(nums);
 		// int locOfFirst0 = binarySearch(nums, 0);
 		for (int i = 0; i < nums.length; i++) {
+			if (i > 0 && nums[i - 1] == nums[i]) {
+				continue;
+			}
 			int j = i + 1; 
 			int k = nums.length - 1; 
 			while (j < k) {
