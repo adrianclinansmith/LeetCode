@@ -36,6 +36,12 @@ class Solution {
 				}
 				j += sum <= 0 ? 1 : 0;
 				k -= sum >= 0 ? 1 : 0;
+				while (j > i + 1 && j < k && nums[j] == nums[j - 1]) {
+					j++;
+				}
+				while (k < nums.length - 1 && j < k && nums[k] == nums[k + 1]) {
+					k--;
+				}
 			}
 		}
 		// System.out.println("Loc of first 0: " + locOfFirst0);
