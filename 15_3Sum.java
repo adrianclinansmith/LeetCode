@@ -59,5 +59,6 @@ class Solution {
 		test(new int[]{0, 2, 3});
 		test(new int[]{1, 2, 3}); 
 		test(new int[]{-2, 1, 1}); 
+		test(new int[]{0, 0, 0, -1, 1, 1, 1}); 
     }
 }
