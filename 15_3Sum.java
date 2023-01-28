@@ -14,7 +14,7 @@ class Solution {
 	public int binarySearch(int[] nums, int k) {
 		int i = Arrays.binarySearch(nums, k);
 		while (i > 0 && nums[i - 1] == k) {
-			i = Arrays.binarySearch(nums, k, 0, i);
+			i = Arrays.binarySearch(nums, 0, i, k);
 		}
 		return i < 0 ? -i - 1 : i;
 	}
