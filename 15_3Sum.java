@@ -20,19 +20,32 @@ class Solution {
 	}
 
     public List<List<Integer>> threeSum(int[] nums) {
+		List<List<Integer>> results = new ArrayList<>();
 		Arrays.sort(nums);
-		int locOfFirst0 = binarySearch(nums, 0);
-		System.out.println("Loc of first 0: " + locOfFirst0);
-		return null;
+		// int locOfFirst0 = binarySearch(nums, 0);
+		for (int i = 0; i < nums.length; i++) {
+			int j = i + 1; 
+			int k = nums.length - 1; 
+			while (j < k) {
+				int sum = nums[i] + nums[j] + nums[k];
+				if (sum == 0) {
+					results.add(Arrays.asList(nums[i], nums[j], nums[k]));
+				}
+				j += sum <= 0 ? 1 : 0;
+				k -= sum >= 0 ? 1 : 0;
+			}
+		}
+		// System.out.println("Loc of first 0: " + locOfFirst0);
+		return results;
     }
 
 	public static void test(int[] nums) {
 		Solution s = new Solution();
 		System.out.println("Testing: " + Arrays.toString(nums));
 		List<List<Integer>> result = s.threeSum(nums);
-		// for (List<Integer> list : result) {
-		// 	System.out.println(list.get(0) + ", " + list.get(1) + ", " + list.get(2));
-		// }
+		for (List<Integer> list : result) {
+			System.out.println(list.get(0) + ", " + list.get(1) + ", " + list.get(2));
+		}
 		System.out.println();
 	}
 
