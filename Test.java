@@ -13,6 +13,5 @@ class Test {
         s.add(1);
         System.out.println(s);
     	System.out.println(t.hello("Monica", 99));
-        binarySearch(ints, k);
     }
 }

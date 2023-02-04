@@ -13,3 +13,5 @@ class MinHeap:
         self.list[2 * len(self.list) + 1] = entry
 minHeap = list()
 
+def stuff:
+    
