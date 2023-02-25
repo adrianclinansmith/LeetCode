@@ -12,4 +12,3 @@ class MinHeap:
     def add(self, entry):
         self.list[2 * len(self.list) + 1] = entry
 minHeap = list()
-    
