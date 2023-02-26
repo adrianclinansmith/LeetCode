@@ -9,3 +9,6 @@ run:
 
 clean:
 	rm $(file)
+
+clean-java:
+	rm *.class
