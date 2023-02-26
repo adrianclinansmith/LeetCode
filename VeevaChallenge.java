@@ -7,15 +7,14 @@ import java.util.HashMap;
 public class VeevaChallenge {
     public static void main(String[] args) {
 		final int N = 80;
-        int a, b, c, d;
 		int solution = 0;
 
 		// Brute Force Solution O(n^4)
 
-		for (a = 1; a <= N; a++) {
-			for (b = 1; b <= N; b++) {
-				for (c = 1; c <= N; c++) {
-					for (d = 1; d <= N; d++) {
+		for (int a = 1; a <= N; a++) {
+			for (int b = 1; b <= N; b++) {
+				for (int c = 1; c <= N; c++) {
+					for (int d = 1; d <= N; d++) {
 						if (a * a + b * b == c * c + d * d) {
 							solution++;
 						}
@@ -40,17 +39,18 @@ public class VeevaChallenge {
 		7^2 + 1^2 == 50
 		5^2 + 5^2 == 50
 		*/
+
 		solution = 0;
-		HashMap<Integer, Integer> leftSides = new HashMap<>();
-		for (a = 1; a <= N; a++) {
-			for (b = 1; b <= N; b++) {
-				int key = a * a + b * b;
-				Integer value = leftSides.get(key);
-				leftSides.put(key, value != null ? value + 1 : 1);
+		HashMap<Integer, Integer> numToCount = new HashMap<>();
+		for (int a = 1; a <= N; a++) {
+			for (int b = 1; b <= N; b++) {
+				int num = a * a + b * b;
+				Integer count = numToCount.get(num);
+				numToCount.put(num, count != null ? count + 1 : 1);
 			}
 		}
-		for (Integer value : leftSides.values()) {
-			solution += value * value;
+		for (Integer count : numToCount.values()) {
+			solution += count * count;
 		}
 		System.out.println("Smarter solution: " + solution);
     }
