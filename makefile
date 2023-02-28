@@ -1,3 +1,4 @@
+# C++
 # $ make file=myFileName
 compileRunClean: compile run clean
 
@@ -9,6 +10,8 @@ run:
 
 clean:
 	rm $(file)
+
+# Java
 
 clean-java:
 	rm *.class
