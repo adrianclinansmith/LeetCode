@@ -1,5 +1,6 @@
 /*
-Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
+Given an integer array nums of length n and an integer target, find three 
+integers in nums such that the sum is closest to target.
 
 Return the sum of the three integers.
 
@@ -11,6 +12,72 @@ Constraints:
 -104 <= target <= 104
 */
 
+import java.util.Arrays;   
+
 class Solution {
-    
+    public int threeSumClosestV1(int[] nums, int target) {
+		Arrays.sort(nums);
+		int bestSum = nums[0] + nums[1] + nums[nums.length - 1];
+		for (int i = 0; i < nums.length; i++) {
+			int j = i + 1;
+			int k = nums.length - 1;
+			while (j < k) {
+				int currentSum = nums[i] + nums[j] + nums[k];
+				if (currentSum > target) {
+					k--;
+				}
+				else if (currentSum < target) {
+					j++;
+				}
+				else {
+					return currentSum;
+				}
+				if (Math.abs(currentSum - target) < Math.abs(bestSum - target)) {
+					bestSum = currentSum;
+				}
+			}
+		}
+		return bestSum;
+	}
+
+	public int threeSumClosestV2(int[] nums, int target) {
+		Arrays.sort(nums);
+		int t = Arrays.binarySearch(nums, target);
+		t = t < 0 ? -1 * t - 1 : t;
+		int i = 0;
+		int k = nums.length - 1;
+		int best;
+		while (i < k) {
+			// int needed = target - nums[i] - nums[k];
+			int needed = target - nums[i] - nums[k];
+			int j = Arrays.binarySearch(nums, i, k, needed);
+			if (j >= 0) {
+				return target;
+			}
+			j = -1 * j - 1;
+			if (j == 0) {
+				k--;
+			}
+			else if (j == nums.length) {
+				i++;
+			}
+			int closest = 
+			else if (Math.abs(needed - nums[j-1]) < Math.abs(needed - nums[j])) {
+
+			}
+		}
+	}
+
+	public static void test(int[] nums, int target) {
+		Solution s = new Solution();
+		String numsStr = Arrays.toString(nums);
+		int v1Solution = s.threeSumClosestV1(nums, target);
+		int v2Solution = s.threeSumClosestV2(nums, target);
+		System.out.println("V1" + numsStr + ": " + v1Solution);
+		System.out.println("V2" + numsStr + ": " + v2Solution + "\n");
+	}
+
+	public static void main(String[] args) {
+    	test(new int[]{1, 2, -3, 3, 0}, 3); 
+    }
 }
