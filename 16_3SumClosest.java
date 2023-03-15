@@ -40,14 +40,29 @@ class Solution {
 		return bestSum;
 	}
 
-	private Integer[] v2pickClosest(int[] nums, int i, int target) {
+	private int closer(Integer a, Integer b, int target) {
+		if (a == null || b == null) {
+			return a == null ? b : a;
+		}
+		int comp = Math.abs(a - target) - Math.abs(b - target);
+		if (comp < 0) {
+			return a;
+		}
+		return b;
+	}
+
+	/* V2 is not working! */
+
+	private Integer[] v2pickClosest(int[] nums, int i, int needed) {
+		/* Return [nums[i-1], null] or [num[i], null] depending on which is
+		closest to needed, or [nums[i-1], null[i]] if both are equally close. */
 		if (i == 0) {
 			return new Integer[]{nums[0], null};
 		}
 		else if (i == nums.length) {
 			return new Integer[]{nums[i-1], null};
 		}
-		int comp = Math.abs(target - nums[i-1]) - Math.abs(target - nums[i]);
+		int comp = Math.abs(nums[i-1] - needed) - Math.abs(nums[i] - needed);
 		if (comp < 0) {
 			return new Integer[]{nums[i-1], null};
 		}
@@ -57,32 +72,36 @@ class Solution {
 		return new Integer[]{nums[i-1], nums[i]}; 
 	}
 
-	public int threeSumClosestV2(int[] nums, int target) {
-		Arrays.sort(nums);
-		// int t = Arrays.binarySearch(nums, target);
-		// t = t < 0 ? -1 * t - 1 : t;
-		int i = 0;
-		int k = nums.length - 1;
-		int best;
-		while (i < k) {
+	private int v2(int[] nums, int i, int k, int target, Integer best) {
+		while (i < k || 
+		(best != null && nums[i] + nums[k] + nums[best] == target)) 
+		{
 			// int needed = target - nums[i] - nums[k];
-			int needed = target - nums[i] - nums[k];
-			int j = Arrays.binarySearch(nums, i, k, needed);
+			int perfect = target - nums[i] - nums[k];
+			int j = Arrays.binarySearch(nums, i, k+1, perfect);
 			if (j >= 0) {
 				return target;
 			}
-			j = -1 * j - 1;
-			if (j == 0) {
+			j = -1 * j - 1; // make j ≥ 0 if `perfect` is not in `n`
+			Integer[] optimal = v2pickClosest(nums, j, perfect);
+			best = closer(optimal[0], best, perfect);
+			if (optimal[1] != null) {
+				best = v2(nums, i+1, k, target, best);
+				best = v2(nums, i, k-1, target, best);
+			}
+			else if (optimal[0] < perfect) {
 				k--;
 			}
-			else if (j == nums.length) {
+			else {
 				i++;
-			}
-			int n = Math.abs(needed - nums[j-1]) - Math.abs(needed - nums[j]);
-			if (n < 0 ) {
-
-			}
+			}	
 		}
+		return best;
+	}
+
+	public int threeSumClosestV2(int[] nums, int target) {
+		Arrays.sort(nums);
+		return v2(nums, 0, nums.length - 1, target, null);
 	}
 
 	public static void test(int[] nums, int target) {
