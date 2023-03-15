@@ -40,10 +40,27 @@ class Solution {
 		return bestSum;
 	}
 
+	private Integer[] v2pickClosest(int[] nums, int i, int target) {
+		if (i == 0) {
+			return new Integer[]{nums[0], null};
+		}
+		else if (i == nums.length) {
+			return new Integer[]{nums[i-1], null};
+		}
+		int comp = Math.abs(target - nums[i-1]) - Math.abs(target - nums[i]);
+		if (comp < 0) {
+			return new Integer[]{nums[i-1], null};
+		}
+		else if (comp > 0) {
+			return new Integer[]{nums[i], null};
+		}
+		return new Integer[]{nums[i-1], nums[i]}; 
+	}
+
 	public int threeSumClosestV2(int[] nums, int target) {
 		Arrays.sort(nums);
-		int t = Arrays.binarySearch(nums, target);
-		t = t < 0 ? -1 * t - 1 : t;
+		// int t = Arrays.binarySearch(nums, target);
+		// t = t < 0 ? -1 * t - 1 : t;
 		int i = 0;
 		int k = nums.length - 1;
 		int best;
@@ -61,8 +78,8 @@ class Solution {
 			else if (j == nums.length) {
 				i++;
 			}
-			int closest = 
-			else if (Math.abs(needed - nums[j-1]) < Math.abs(needed - nums[j])) {
+			int n = Math.abs(needed - nums[j-1]) - Math.abs(needed - nums[j]);
+			if (n < 0 ) {
 
 			}
 		}
