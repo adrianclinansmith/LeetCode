@@ -16,8 +16,6 @@ class Solution:
 		"6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"
 	}
 	def letterCombinations(self, digits: str) -> list[str]:
-		if len(digits) == 0:
-			return []
 		solution = [""]
 		for currentDigit in digits:
 			currentLetters = self.lettersForDigit[currentDigit]
@@ -26,7 +24,7 @@ class Solution:
 				for letter in currentLetters:
 					currentSolution.append(string + letter)
 			solution = currentSolution
-		return solution
+		return solution if len(digits) > 0 else []
 	
 s = Solution()
 print(s.letterCombinations("2"))
