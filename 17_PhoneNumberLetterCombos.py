@@ -19,7 +19,7 @@ class Solution:
 		solution = [""]
 		for currentDigit in digits:
 			currentLetters = self.lettersForDigit[currentDigit]
-			currentSolution = []
+			currentSolution: list[str] = []
 			for string in solution:
 				for letter in currentLetters:
 					currentSolution.append(string + letter)
